@@ -10,8 +10,6 @@
   </p>
 </div>
 
-<img src="md/20260414142727652.jpg" width="%100" style="border-radius: 8px;" />
-
 ## ✨ Features
 
 - **Premium Aesthetics:** Dark-themed interface with glassmorphism effects and gold accents.
@@ -25,6 +23,8 @@
 - **Fast Performance:** In-memory caching for recently loaded chapters.
 - **Responsive Design:** Optimized for both mobile devices and large screens.
 - **Deep Linking:** Syncs reading progress with the URL hash (e.g., `index.html#42`).
+
+<img src="md/20260414142727652.jpg" width="%100" style="border-radius: 8px;" />
 
 ## 🛠️ Tech Stack
 
