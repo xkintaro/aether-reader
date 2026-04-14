@@ -10,7 +10,7 @@
   </p>
 </div>
 
-<img src="md/20260414142727595.jpg" width="auto" style="border-radius: 8px;" />
+<img src="md/20260414142727652.jpg" width="%100" style="border-radius: 8px;" />
 
 ## ✨ Features
 
@@ -32,7 +32,7 @@
 - **Styling:** Tailwind CSS
 - **Icons:** Lucide Icons
 
-<img src="md/20260414142727652.jpg" width="%100" style="border-radius: 8px;" />
+<img src="md/20260414142727721.jpg" width="auto" style="border-radius: 8px;" />
 
 ## 🚀 Getting Started
 
@@ -58,7 +58,7 @@ You need [Node.js](https://nodejs.org/) installed on your system to run the Tail
    npm start
    ```
 
-<img src="md/20260414142727721.jpg" width="auto" style="border-radius: 8px;" />
+<img src="md/20260414142727595.jpg" width="100%" style="border-radius: 8px;" />
 
 ## 📂 Content & Configuration
 
