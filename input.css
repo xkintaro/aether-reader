@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+@theme {
+    --color-gold-100: #f5edcf;
+    --color-gold-200: #ecd99f;
+    --color-gold-300: #e0c069;
+    --color-gold-400: #d6a741;
+    --color-gold-500: #c5a021;
+    --color-gold-600: #a98018;
+    --color-gold-950: #38240d;
+
+    --color-surface-base: #0c0c0c;
+    --color-surface-raised: #121212;
+    --color-surface-overlay: #161616;
+    --color-surface-input: #1a1a1a;
+}
+
+@layer base {
+    body {
+        @apply bg-surface-base text-slate-300 antialiased;
+    }
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: theme(--color-surface-overlay);
+    border-radius: 10px;
+}
+
+.book-shadow {
+    box-shadow: 0 20px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.modal-blur {
+    backdrop-filter: blur(8px);
+    background-color: color-mix(in srgb, theme(--color-surface-base) 70%, transparent);
+}
+
+.gold-text {
+    background: linear-gradient(to bottom right, theme(--color-gold-300), theme(--color-gold-500));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.reader-text {
+    font-family: 'Lora', serif;
+    letter-spacing: -0.01em;
+}
