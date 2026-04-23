@@ -60,7 +60,7 @@ The project is built using today's fastest and most reliable modern web technolo
 - **[Next Themes](https://github.com/pacocoursey/next-themes)**
 - **[Radix UI](https://www.radix-ui.com/)**
 
-<img src="md/20260420151714586.jpg" width="100%" style="border-radius: 8px;" />
+<img src="md/20260420151714586.jpg" width="auto" style="border-radius: 8px;" />
 
 ## 🚀 <a id="setup"></a> Setup and Development
 
