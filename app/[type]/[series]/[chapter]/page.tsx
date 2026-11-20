@@ -1,140 +1,103 @@
-import { getMangaChapter, getNovelChapter } from "@/core/services/contentService";
-
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { ContentType } from "@/core/types";
+import { getMangaChapter, getNovelChapter, getSeriesDetails } from "@/core/services/contentService";
+import { ChapterMeta, ContentType, MangaChapterData, NovelChapterData } from "@/core/types";
 
 import MemoryTracker from "@/components/reader/MemoryTracker";
-
+import ReaderHeader from "@/components/reader/ReaderHeader";
 import ReaderNav from "@/components/reader/ReaderNav";
+import { formatChapterTitle } from "@/lib/format";
 
-import Link from "next/link";
+type Params = Promise<{ type: string; series: string; chapter: string }>;
 
-import { ChevronRight, Home } from "lucide-react";
 
-export default async function UniversalReaderPage({
-  params,
-}: {
-  params: Promise<{ type: string; series: string; chapter: string }>;
-}) {
+export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
+  const { type, series, chapter } = await params;
+  if (type !== 'manga' && type !== 'novel') return {};
+  try {
+    const data = await getSeriesDetails(type, series);
+    const ch = data.chapters.find(c => c.id === chapter);
+    return { title: `${formatChapterTitle(ch?.title ?? chapter)} · ${data.title}` };
+  } catch {
+    return {};
+  }
+}
+
+export default async function UniversalReaderPage({ params }: { params: Params }) {
   const { type, series, chapter } = await params;
 
   if (type !== 'manga' && type !== 'novel') notFound();
   const contentType = type as ContentType;
 
-  let data;
+  let data: MangaChapterData | NovelChapterData;
+  let seriesTitle: string;
+  let chapters: ChapterMeta[];
+
   try {
-    if (contentType === 'manga') {
-      data = await getMangaChapter(series, chapter);
-    } else {
-      data = await getNovelChapter(series, chapter);
-    }
-  } catch (error) {
+    const [chapterData, seriesData] = await Promise.all([
+      contentType === 'manga' ? getMangaChapter(series, chapter) : getNovelChapter(series, chapter),
+      getSeriesDetails(contentType, series),
+    ]);
+    data = chapterData;
+    seriesTitle = seriesData.title;
+    chapters = seriesData.chapters;
+  } catch {
     notFound();
   }
 
-  const formatTitle = (slug: string) => slug.replace(/-/g, ' ').toUpperCase();
+  const currentTitle = chapters.find(c => c.id === chapter)?.title ?? chapter;
 
   return (
-    <main className="global-container">
-
+    <>
       <MemoryTracker type={contentType} seriesId={series} chapterId={chapter} />
 
-      <nav className="py-8 overflow-x-auto sticky top-0 z-50 bg-background">
+      <ReaderHeader
+        type={contentType}
+        seriesId={series}
+        seriesTitle={seriesTitle}
+        chapterId={chapter}
+        chapters={chapters}
+        prev={data.prev}
+        next={data.next}
+      />
 
-        <ol className="flex items-center gap-2 text-xs sm:text-sm text-muted-foreground uppercase">
-
-          <li>
-            <Link
-              href="/"
-              className="flex items-center gap-1.5 shrink-0 hover:text-primary transition-colors duration-300"
-            >
-
-              <Home className="w-4 h-4" />
-
-              <span>
-                Home
-              </span>
-
-            </Link>
-          </li>
-
-          <ChevronRight className="w-4 h-4 opacity-50 shrink-0" />
-
-          <li className="hover:text-primary transition-colors duration-300 truncate max-w-[150px] sm:max-w-[300px] shrink-0">
-
-            <Link href={`/${contentType}/${series}`}>
-
-              {formatTitle(series)}
-
-            </Link>
-
-          </li>
-
-          <ChevronRight className="w-4 h-4 opacity-50 shrink-0" />
-
-          <li className="text-foreground truncate max-w-[150px] sm:max-w-[300px] shrink-0" aria-current="page">
-
-            {formatTitle(chapter)}
-
-          </li>
-
-        </ol>
-
-      </nav>
-
-      <article>
-
-        {contentType === 'novel' ? (
-
-          <div className="prose prose-neutral dark:prose-invert max-w-none">
+      <main className="flex-1">
+        {'content' in data ? (
+          <article className="mx-auto w-full max-w-[68ch] px-5 py-10 sm:py-14">
+            <header className="mb-10 border-b pb-6 text-center">
+              <p className="font-mono text-xs tracking-widest text-primary-ink uppercase">{seriesTitle}</p>
+              <h1 className="mt-2 text-2xl font-semibold sm:text-3xl">{formatChapterTitle(currentTitle)}</h1>
+            </header>
 
             <div
-              className="whitespace-pre-wrap leading-relaxed sm:leading-loose text-lg sm:text-xl text-foreground"
+              className="text-[length:var(--reader-font-size,19px)] leading-[1.85] whitespace-pre-wrap text-foreground/90 [font-family:var(--reader-font-family,var(--font-geist-sans))]"
             >
-
-              {/* @ts-ignore - data.content */}
               {data.content}
-
             </div>
-
-          </div>
-
+          </article>
         ) : (
-
-          <div className="flex flex-col items-center w-full">
-
-            {/* @ts-ignore - data.images */}
-            {data.images.map((src: string, index: number) => (
-
+          <article className="mx-auto flex w-full max-w-3xl flex-col items-center">
+            {data.images.length === 0 && (
+              <p className="py-24 text-center text-muted-foreground">This chapter has no pages.</p>
+            )}
+            {data.images.map((src, index) => (
+              // eslint-disable-next-line @next/next/no-img-element
               <img
-                key={index}
+                key={src}
                 src={src}
-                loading="lazy"
-                className="w-full h-auto max-w-full object-contain"
+                alt={`Page ${index + 1}`}
+                loading={index < 2 ? 'eager' : 'lazy'}
+                className="block h-auto w-full max-w-full bg-muted object-contain"
               />
-
             ))}
-
-          </div>
-
+          </article>
         )}
 
-      </article>
-
-      <div className="mt-8 pt-8 border-t border-border flex items-center justify-center">
-
-        <ReaderNav
-          type={contentType}
-          seriesId={series}
-          prev={data.prev}
-          next={data.next}
-        />
-
-      </div>
-
-    </main>
-
+        <div className="mx-auto w-full max-w-3xl px-4 py-10">
+          <ReaderNav type={contentType} seriesId={series} prev={data.prev} next={data.next} />
+        </div>
+      </main>
+    </>
   );
-
 }
