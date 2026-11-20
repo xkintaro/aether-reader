@@ -2,6 +2,10 @@
 
 import { useEffect } from 'react';
 import Link from 'next/link';
+import { AlertTriangle, Home, RotateCcw } from 'lucide-react';
+
+import { Button } from '@/components/ui/button';
+import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from '@/components/ui/empty';
 
 export default function GlobalError({
     error,
@@ -15,33 +19,26 @@ export default function GlobalError({
     }, [error]);
 
     return (
-
-        <main>
-
-            <h1>
-                Error
-            </h1>
-
-            <p>
-                {error.message || "Unknown anomaly detected."}
-            </p>
-
-            <div>
-
-                <button
-                    onClick={() => reset()}
-                >
-                    Retry
-                </button>
-
-                <Link
-                    href="/"
-                >
-                    Home
-                </Link>
-
-            </div>
-
+        <main className="flex flex-1 items-center justify-center p-6">
+            <Empty>
+                <EmptyHeader>
+                    <EmptyMedia variant="icon" className="bg-destructive/10 text-destructive">
+                        <AlertTriangle />
+                    </EmptyMedia>
+                    <EmptyTitle>Something went wrong</EmptyTitle>
+                    <EmptyDescription>{error.message || "Unknown anomaly detected."}</EmptyDescription>
+                </EmptyHeader>
+                <EmptyContent className="flex-row justify-center gap-2">
+                    <Button size="lg" onClick={() => reset()}>
+                        <RotateCcw />
+                        Retry
+                    </Button>
+                    <Button size="lg" variant="outline" nativeButton={false} render={<Link href="/" />}>
+                        <Home />
+                        Home
+                    </Button>
+                </EmptyContent>
+            </Empty>
         </main>
     );
 }
