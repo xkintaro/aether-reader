@@ -20,7 +20,7 @@
 ![Next.js](https://img.shields.io/badge/Next.js-black?style=for-the-badge&logo=next.js)
 ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
-![Radix UI](https://img.shields.io/badge/Radix_UI-161618?style=for-the-badge&logo=radix-ui&logoColor=white)
+![shadcn/ui](https://img.shields.io/badge/shadcn%2Fui-000000?style=for-the-badge&logo=shadcnui&logoColor=white)
 ![Lucide Icons](https://img.shields.io/badge/Lucide-FF69B4?style=for-the-badge&logo=lucide&logoColor=white)
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)
 
@@ -29,6 +29,7 @@
     <a href="#technologies">Teknolojiler</a> •
     <a href="#installation">Kurulum</a> •
     <a href="#how-it-works">Nasıl Çalışır?</a> •
+    <a href="#demo-content">Demo İçerik</a> •
     <a href="#license">Lisans</a> •
     <a href="#gallery">Galeri</a>
   </p>
@@ -43,44 +44,50 @@
 
 ## 📋 <a id="about"></a> Hakkında
 
-**Aether Reader**, hem mangaları hem de romanları tek bir çatı altında toplayan, modern web teknolojileriyle geliştirilmiş premium bir dijital kütüphane ve okuma uygulamasıdır.
+**Aether Reader**, mangaları ve romanları tek bir çatı altında toplayan bir dijital kütüphane ve okuma uygulamasıdır.
 
-Kullanıcı dostu arayüzü, gelişmiş tema sistemi ve akıcı animasyonları ile okuma deneyiminizi en üst seviyeye çıkarmak için tasarlandı. Tüm içerikler yerel olarak yönetilir ve size maksimum hızda sunulur.
+Kütüphanenizi doğrudan diskteki klasörlerden okur; veritabanı ya da hesap gerekmez. Arayüz, shadcn/ui ve ortak [Aether Theme](https://github.com/xkintaro/aether) ile hazırlanmıştır; sade bir açık ve koyu tema sunar.
 
 ## ✨ <a id="features"></a> Özellikler
 
-### Akıllı Kütüphane Yönetimi
-- **Yerel Dosya Sistemi**: Eklediğiniz dosyaları klasör adlarından analiz ederek, herhangi bir veritabanına ihtiyaç duymadan bir kütüphane oluşturur.
-- **Otomatik Kategorizasyon**: Manga ve roman içeriklerini otomatik olarak sınıflandırır ve uygun okuyucu modunda sunar.
-- **Sürükleyici Kaydırma Deneyimi**: Embla Carousel desteğiyle seriler arasında hızlı ve akıcı bir şekilde gezinin.
-- **Kaldığın Yerden Devam Et**: "Devam Et" butonu ile en son okuduğunuz seriye ve bölüme anında geri dönün.
+### Kütüphane
+- **Yerel Dosya Sistemi**: Kütüphaneyi klasör adlarından oluşturur, herhangi bir veritabanına ihtiyaç duymaz.
+- **Filtrelenebilir Izgara**: Tümü / Manga / Roman arasında geçiş yapın, başlığa göre filtreleyin; başlığa, bölüm sayısına veya okuma ilerlemesine göre sıralayın.
+- **Okuma İlerlemesi**: Her seri kartı ne kadar okuduğunuzu gösterir; okunan bölümler seri sayfasında işaretlenir.
+- **Kaldığın Yerden Devam Et**: Kütüphanenin en üstünden en son okuduğunuz bölüme anında dönün.
+- **Genel Arama**: `Ctrl + K` ile kapaklı sonuçlar ve klavye ile gezinme sunan arama penceresini açın.
 
-### Gelişmiş Navigasyon
-- **Genel Arama (Global Search)**: Herhangi bir seriye anında ulaşmanızı sağlayan modern bir arama penceresi.
-- **Hızlı Bölüm Geçişleri**: Bölümler arasında akıcı geçiş ve doğrudan erişim özellikleri.
-- **Duyarlı (Responsive) Tasarım**: Bilgisayardan tablete, tabletten telefona kesintisiz bir deneyim.
+### Okuyucu
+- **Manga ve Roman Modları**: Manga sayfaları dikey bir şerit halinde, romanlar ise odaklı bir metin görünümünde açılır.
+- **Bölüm Geçişleri**: Önceki/sonraki butonları, bölüm seçici ve `←` / `→` klavye kısayolları.
+- **Dikkat Dağıtmayan Üst Bar**: Aşağı kaydırırken gizlenir ve okuma ilerleme çubuğunu gösterir.
+- **Metin Ayarları**: Romanlar için yazı boyutu ve yazı tipi (Geist / JetBrains Mono) ayarlanabilir; tercih tarayıcıda saklanır.
+
+### Tasarım
+- **Açık ve Koyu Tema**: Tek tıkla geçiş; renkler Aether Theme token'larından gelir.
+- **Duyarlı (Responsive) Tasarım**: Bilgisayarda, tablette ve telefonda aynı deneyim.
 
 ## 🛠️ <a id="technologies"></a> Teknolojiler
 
-Proje, günümüzün en hızlı ve en güvenilir modern web teknolojileri kullanılarak inşa edilmiştir:
-
 ### Frontend & Framework
-- **Next.js**: Web için modern ve hızlı React web çatısı
-- **React 19**: Kullanıcı arayüzleri oluşturmak için güçlü kütüphane
-- **Tailwind CSS**: Hızlı stil geliştirme için yardımcı sınıf tabanlı CSS kütüphanesi
-- **Lucide React**: Modern ve hafif SVG ikon kütüphanesi
+- **Next.js 16**: App Router ve Server Actions ile React web çatısı
+- **React 19**: Kullanıcı arayüzleri oluşturmak için kütüphane
+- **Tailwind CSS 4**: Yardımcı sınıf tabanlı CSS kütüphanesi
+- **TypeScript**: Tip güvenli JavaScript
 
 ### UI & Deneyim
-- **Embla Carousel**: Akıcı ve esnek slider/carousel kütüphanesi
-- **Next Themes**: Kolay ve şık koyu/açık tema yönetimi
-- **Radix UI**: Erişilebilir ve stil içermeyen temel UI bileşenleri
+- **shadcn/ui (base-nova)**: **Base UI** üzerine kurulu erişilebilir bileşenler
+- **[@xkintaro/aether-theme](https://github.com/xkintaro/aether)**: Ortak renk token'ları, tipografi ve fontlar (Geist + JetBrains Mono)
+- **cmdk**: Genel aramanın altındaki komut paleti
+- **Next Themes**: Açık/koyu tema geçişi
+- **Lucide React**: İkon kütüphanesi
 
 ## 🚀 <a id="installation"></a> Kurulum
 
 Projeyi yerel ortamınızda çalıştırmak için aşağıdaki adımları takip edebilirsiniz.
 
 ### Gereksinimler
-- **Node.js**
+- **Node.js** 20 veya üzeri
 - **NPM**
 
 ### Kurulum Adımları
@@ -96,7 +103,7 @@ Projeyi yerel ortamınızda çalıştırmak için aşağıdaki adımları takip 
     npm install
     ```
 
-3.  **Geliştirici Sunucusunu Başlatın**
+3.  **Geliştirme Sunucusunu Başlatın**
     ```bash
     npm run dev
     ```
@@ -105,36 +112,66 @@ Projeyi yerel ortamınızda çalıştırmak için aşağıdaki adımları takip 
 
 ## ⚙️ Sistem Nasıl Çalışır? (`/contents` Klasörü) <a id="how-it-works"></a>
 
-Aether Reader tamamen yerel bir dosya sistemi mantığıyla çalışır ve karmaşık veritabanı kurulumları gerektirmez. Kütüphanenizi oluşturmak için `contents/` klasörünü doğru şekilde yapılandırmanız yeterlidir:
+Aether Reader tamamen yerel dosya sistemi üzerinden çalışır ve veritabanı gerektirmez. Kütüphanenizi oluşturmak için `contents/` klasörünü şu şekilde düzenleyin:
+
+```text
+contents/
+├── manga/
+│   └── Pepper&Carrot/              ← seri adı
+│       ├── cover.webp              ← seri kapağı
+│       ├── 01 - Potion of Flight/  ← bölüm (görsellerden oluşan klasör)
+│       │   ├── 01.webp
+│       │   └── 02.webp
+│       └── 02 - Rainbow Potions/
+└── novel/
+    └── Frankenstein/               ← seri adı
+        ├── cover.webp
+        ├── 01 - Letter 1.txt       ← bölüm (düz metin dosyası)
+        └── 02 - Letter 2.txt
+```
 
 ### Manga Okumak İçin
-Dosyalarınızı `contents/manga/` dizinine ekleyin. Aether Reader iç içe geçmiş klasör yapısını okur:
-1. Ana klasör adı **Seri Başlığı** olarak alınır. (Örn: `contents/manga/Tokyo Ghoul/`)
-2. Alt klasörler **Bölümler** olarak işlenir. (Örn: `contents/manga/Tokyo Ghoul/chapter-1/`)
-3. Bölüm klasörü içindeki tüm popüler görsel formatları (`.jpg`, `.png`, `.webp` vb.) sırasıyla görüntülenir.
+Dosyalarınızı `contents/manga/` dizinine ekleyin:
+1. Klasör adı **Seri Adı** olarak kullanılır.
+2. Her alt klasör bir **Bölüm**dür.
+3. Bölüm klasöründeki görseller (`.jpg`, `.jpeg`, `.png`, `.webp`) doğal sırayla gösterilir (`2`, `10`'dan önce gelir).
 
 ### Roman Okumak İçin
-Dosyalarınızı `contents/novel/` dizinine ekleyin.
-1. Ana klasör adı **Seri Başlığı** olarak alınır. (Örn: `contents/novel/Solo Leveling/`)
-2. Klasörün içindeki `.txt` dosyaları otomatik olarak **Bölümler** olarak algılanır. (Örn: `contents/novel/Solo Leveling/chapter-1.txt`)
+Dosyalarınızı `contents/novel/` dizinine ekleyin:
+1. Klasör adı **Seri Adı** olarak kullanılır.
+2. Her `.txt` dosyası bir **Bölüm**dür. Boş satırlar paragrafları ayırır.
 
-> **Kapak Görseli Ekleme:** Herhangi bir serinin (manga veya roman fark etmeksizin) ana klasörüne ekleyeceğiniz ilk görsel dosyası (örn: `cover.jpg`), o serinin kapak görseli olarak otomatik olarak kullanılır. Aksi takdirde varsayılan bir kapak atanır.
+### Bölüm Adları
+- Bölümler adlarına göre doğal sırayla dizilir.
+- `01 - ` gibi bir sıralama ön eki arayüzde gizlenir; yani `07 - A Mad Tea-Party`, **A Mad Tea-Party** olarak görünür.
+- `chapter-1` gibi basit adlar da çalışır ve **chapter 1** olarak görünür.
+
+> **Kapak Resmi Ekleme:** Bir seri klasöründeki ilk görsel dosyası (örn. `cover.webp`) o serinin kapağı olarak kullanılır. Yoksa varsayılan bir kapak gösterilir.
+
+## 📚 <a id="demo-content"></a> Demo İçerik
+
+Depo, yalnızca kamu malı ve özgür lisanslı eserlerden oluşan küçük bir demo kütüphaneyle gelir:
+
+- **Manga:** David Revoy'un *Pepper&Carrot*'u (CC BY 4.0), Katsushika Hokusai'nin *Hokusai Manga* ve *Fuji Dağı'nın Yüz Görünümü* eserleri (kamu malı)
+- **Roman:** *Alice Harikalar Diyarında*, *Dracula*, *Frankenstein*, *Sherlock Holmes'un Maceraları*, *Dünyalar Savaşı*, *Oz Büyücüsü* ve *Define Adası* (Project Gutenberg, kamu malı)
+
+Kaynaklar, yazarlar ve lisanslar [contents/CREDITS.md](contents/CREDITS.md) dosyasında listelenmiştir. Bu klasörleri silip kendi içeriğinizi ekleyebilirsiniz.
 
 ## 📄 Lisans <a id="license"></a>
 
-Bu proje MIT Lisansı ile lisanslanmıştır. Detaylar için [LICENSE](LICENSE) dosyasını inceleyebilirsiniz.
+Bu proje MIT Lisansı ile lisanslanmıştır. Detaylar için [LICENSE](LICENSE) dosyasına göz atabilirsiniz. Demo içerik kendi lisansını korur ([contents/CREDITS.md](contents/CREDITS.md) dosyasına bakın).
 
 ## 🖼️ Galeri <a id="gallery"></a>
 
-<img src="md/20260420151714384.jpg" width="100%" />
+<img src="md/screenshot-library.jpg" width="100%" />
 
 #
 
-<img src="md/20260420151714492.jpg" width="100%" />
+<img src="md/screenshot-series.jpg" width="100%" />
 
 #
 
-<img src="md/20260420151714586.jpg" width="auto" />
+<img src="md/screenshot-novel.jpg" width="100%" />
 
 #
 
