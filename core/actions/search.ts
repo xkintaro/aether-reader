@@ -6,6 +6,8 @@ export interface SearchResult {
     id: string;
     type: 'manga' | 'novel';
     title: string;
+    cover?: string;
+    chapterCount: number;
 }
 
 export async function searchContent(query: string): Promise<SearchResult[]> {
@@ -19,7 +21,9 @@ export async function searchContent(query: string): Promise<SearchResult[]> {
         .map(series => ({
             id: series.id,
             type: series.type,
-            title: series.title
+            title: series.title,
+            cover: series.cover,
+            chapterCount: series.chapters.length,
         }));
 
     return results;
